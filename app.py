@@ -61,7 +61,7 @@ def get_values():
     import pickle
 
 
-    model = pickle.load(open('Resources/lr_classifier.pkl', 'rb'))       
+    model = pickle.load(open('resources/lr_classifier.pkl', 'rb'))       
     chance=0
 
     data = np.array(input)[np.newaxis, :]  # converts shape for model test
