@@ -17,8 +17,7 @@ from flask import Flask, jsonify, render_template, request
 #USERNAME = 'pbtgukboftbrzu'
 #PASSWORD_2 = '61505d143e605da4ce02d5d290796a3d717024a099a43ccd8ef4a055e316ef0d'
 #DATABASE_CONN = f'postgresql://{USERNAME}:{PASSWORD_2}@{SERVER}/{DATABASE}'
-engine = create_engine(<postgres://pbtgukboftbrzu:61505d143e605da4ce02d5d290796a3d717024a099a43ccd8ef4a055e316ef0d@ec2-34-230-153-41.compute-1.amazonaws.com:5432/d5qvc3b55lan17
->, echo=false)
+engine = create_engine(<postgres://pbtgukboftbrzu:61505d143e605da4ce02d5d290796a3d717024a099a43ccd8ef4a055e316ef0d@ec2-34-230-153-41.compute-1.amazonaws.com:5432/d5qvc3b55lan17>, echo=false)
 #################################################
 # Flask Setup
 #################################################
