@@ -10,25 +10,12 @@ from sqlalchemy import create_engine, inspect, func
 from flask import Flask, jsonify, render_template, request 
 
 #################################################
-# Database Setup
-#################################################
-#SERVER = '127.0.0.1'
-#DATABASE = 'd5qvc3b55lan17'
-#USERNAME = 'pbtgukboftbrzu'
-#PASSWORD_2 = '61505d143e605da4ce02d5d290796a3d717024a099a43ccd8ef4a055e316ef0d'
-#DATABASE_CONN = f'postgresql://{USERNAME}:{PASSWORD_2}@{SERVER}/{DATABASE}'
-engine = create_engine(<postgres://pbtgukboftbrzu:61505d143e605da4ce02d5d290796a3d717024a099a43ccd8ef4a055e316ef0d@ec2-34-230-153-41.compute-1.amazonaws.com:5432/d5qvc3b55lan17>, echo=false)
-#################################################
-# Flask Setup
+
 #################################################
 app = Flask(__name__)
 #################################################
 # Flask Routes
 #################################################
-session = Session(engine)
-results = engine.execute("SELECT * FROM loan_data").fetchall()
-session.close()
-
 
 # create route that renders index.html template
 @app.route("/")
@@ -110,28 +97,7 @@ def get_values():
     return render_template("result.html", result = model_result) 
     #return render_template("index.html",)    
 
-@app.route("/loandata/api")
-def data_crops():
-    loan_data = []
-    for id, loan_type , loan_amount_000, action_taken, applicant_ethnicity, co_applicant_ethnicity, applicant_race_1, co_applicatn_race_1, applicant_sex, co_applicant_sex, applicant_income, purchaser_type in results:
-        loans = {}
-        loans["id"] = id
-        loans["loan_type"] = loan_type
-        loans["loan_amount_000's"] = loan_amount_000
-        loans["action_taken"] = action_taken
-        loans["applicant_ethnicity"] = applicant_ethnicity
-        loans["co_applicant_ethnicity"] = co_applicant_ethnicity
-        loans["applicant_race_1"] = applicant_race_1
-        loans["co_applicant_race_1"] = co_applicatn_race_1
-        loans["applicant_sex"] = applicant_sex
-        loans["co_applicant_sex"] = co_applicant_sex
-        loans["applicant_income_000's"] = applicant_income
-        loans["purchaser_type"] = purchaser_type
-        
-        loan_data.append(loans)
 
-
-    return jsonify(loan_data)
 
 if __name__ == '__main__':
     app.run(debug=True)
