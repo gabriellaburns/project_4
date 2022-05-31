@@ -15,14 +15,66 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+        <script> var data = JSON.parse({{stateData|tojson}});
+        console.log("d",data)
+            
+        </script>
 </head>
 <body>
 
+
+
     <div class="container border border-secondary rounded" style="background-color:#f9f9f9;border-color:#d3d3d3;border: width 10px;">
-        {{result.prediction}}
+        <h1>{{result.prediction}}</h1>
         <hr>
         <p>The probability of this result is:</p>
-        {{result.probability}}   
+        <h3>{{result.probability}}   </h3>
     </div>
+
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 jumbotron text-center border-secondary rounded" style="background-color:#f9f9f9;border-color:#d3d3d3;border: width 10px;">
+        <h2>2014-2017 Results by State </h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-3">
+        <div class="well" >
+          <h5>Choose Your State</h5>
+          <select id="selDataset" onchange="optionChanged(this.value)"></select>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col">
+        <div id="bar"></div>
+      </div>
+      <div class="col ">
+        <div id="bar2"></div>
+      </div>
+    </div>
+
+
+    <div class="row">
+      <div class="col-auto me-auto">
+        <div id="pie1"></div>
+      </div>
+      <div class="col-auto me-auto">
+        <div id="pie2"></div>
+      </div>
+      <div class="col-auto me-auto">
+        <div id="pie3"></div>
+      </div>
+    </div>
+
+
+   
+    <!-- <script src="https://d3js.org/d3.v7.min.js"></script> -->
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="../static/js/app.js"></script>
+
 </body>
 </html>
