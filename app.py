@@ -6,7 +6,7 @@ import sqlalchemy
 from sqlalchemy.ext.automap import automap_base
 from sqlalchemy.orm import Session
 from sqlalchemy import create_engine, inspect, func
-
+import json
 from flask import Flask, jsonify, render_template, request 
 
 #################################################
@@ -21,6 +21,7 @@ app = Flask(__name__)
 @app.route("/")
 def index():
 
+  
     return render_template("index.html") 
 
 @app.route("/formurl", methods=["post"])
@@ -90,14 +91,14 @@ def get_values():
         "prediction":prediction,
         "probability":str((chance*100)) + '%'
     }
-    # Load he model and feed the input to the model to get the result
-    # model_result = michales_fantastic_model_result
+  
+    with open('resources/state_summary_remix.json', 'r') as myfile:
+        data = myfile.read()
+
 
     # Render the result through a html page
-    return render_template("result.html", result = model_result) 
+    return render_template("result.html", result = model_result, stateData=data) 
     #return render_template("index.html",)    
-
-
 
 if __name__ == '__main__':
     app.run(debug=True)
